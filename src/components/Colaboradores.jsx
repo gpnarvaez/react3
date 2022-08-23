@@ -9,48 +9,62 @@ import { BaseColaboradores } from "./BaseColaboradores";
 
 
 const Colaborador = () => {
+    const [listaColaboradores, setListaColaboradores] = useState(BaseColaboradores);
 
-return (
-    <div>
-    <div>
-    <Navbar bg="light" expand="lg">
-      <Container fluid>
-        <Navbar.Brand href="#">Colaboradores</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">     
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Buscar colaborador"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Buscar</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    </div>
-    
-    <div>
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Nombre del colaborador</Form.Label>
-        <Form.Control type="email" placeholder="Ingresa su nombre" />
-      </Form.Group>
+    return (
+        <div>
+            <div>
+                <Navbar bg="light" expand="lg">
+                    <Container fluid>
+                        <Navbar.Brand href="#">Colaboradores</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="navbarScroll" />
+                        <Navbar.Collapse id="navbarScroll">
+                            <Form className="d-flex">
+                                <Form.Control
+                                    type="search"
+                                    placeholder="Buscar colaborador"
+                                    className="me-2"
+                                    aria-label="Search"
+                                />
+                                <Button variant="outline-success">Buscar</Button>
+                            </Form>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </div>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Correo del colaborador</Form.Label>
-        <Form.Control type="email" placeholder="Ingresa su correo" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        + Agregar
-      </Button>
-    </Form>
-    </div>
-</div>
+            <div>
+                <Form>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Nombre del colaborador</Form.Label>
+                        <Form.Control type="type" placeholder="Ingresa su nombre" />
+                    </Form.Group>
 
-)
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Correo del colaborador</Form.Label>
+                        <Form.Control type="email" placeholder="Ingresa su correo" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        + Agregar
+                    </Button>
+                </Form>
+            </div>
+
+            <div>
+                <h3>Listado de Colaboradores</h3>
+                <ul>
+                    {listaColaboradores.map(colaborador => 
+                    <li 
+                    key={colaborador}> {colaborador.nombre} {" ; "} {colaborador.correo}
+                    </li>)}
+                </ul>
+            </div>
+
+
+
+        </div>
+
+    )
 
 }
 
