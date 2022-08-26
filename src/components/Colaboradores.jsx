@@ -1,9 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useState } from "react";
 import { BaseColaboradores } from "./BaseColaboradores";
 import uuid from 'react-uuid';
@@ -22,17 +20,16 @@ const Colaborador = () => {
         {
             id: uuid(), nombre: nombreColaborador, correo: emailColaborador,
         }])
-        setInputBuscador(BaseColaboradores);
+        setInputBuscador(listaColaboradores);
     }
 
     const Buscar=(inputUser)=>{
-        setInputBuscador(BaseColaboradores);
+        setInputBuscador(listaColaboradores);
         if(inputUser !==''){
             let listaFiltrada=listaColaboradores.filter((ele)=>(ele.nombre.includes(inputUser)))
-            setListaColaboradores(listaFiltrada)
+            setInputBuscador(listaFiltrada)
         }
     }
-
     return (
         <div>
             <div>
@@ -46,7 +43,7 @@ const Colaborador = () => {
                                     type="search"
                                     placeholder="Buscar colaborador"
                                     className="me-2"
-                                    name="inputUser"
+                                    name="inputBuscar"
                                     onChange={e=>Buscar(e.target.value)}/>
                             </Form>
                         </Navbar.Collapse>
@@ -74,8 +71,8 @@ const Colaborador = () => {
             <div>
                 <h3>Listado de Colaboradores</h3>
                 <ul>
-                    {listaColaboradores.map(colaborador =>
-                        <li key={colaborador.nombre}> {colaborador.nombre} - {colaborador.correo}
+                    {inputBuscar.map(colaborador =>
+                        <li key={colaborador.id}> {colaborador.nombre} - {colaborador.correo}
                         </li>)}
                 </ul>
             </div>
